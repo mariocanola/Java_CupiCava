@@ -231,8 +231,21 @@ public class Vino
      */
     public int compararPorNombre( Vino pVino )
     {
-    	 // TODO Parte2 PuntoA: Implemente el método según la documentación dada.
+    	if (pVino == null || pVino.darNombre() == null || nombre == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino.");
+        }
+
+        int resultado = nombre.compareTo(pVino.darNombre());
+
+        if (resultado == 0) {
+            return 0;
+        } else if (resultado < 0) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
+    
 
     /**
      * Compara dos vinos según la presentación. <br>
