@@ -256,8 +256,19 @@ public class Vino
      */
     public int compararPorPresentacion( Vino pVino )
     {
-    	
-   	 // TODO Parte2 PuntoB: Implemente el método según la documentación dada.
+    	if (pVino == null || pVino.darPresentacion() == null || presentacion == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino.");
+        }
+
+        int resultado = presentacion.compareTo(pVino.darPresentacion());
+
+        if (resultado == 0) {
+            return 0;
+        } else if (resultado < 0) {
+            return -1;
+        } else {
+            return 1;
+        }
    }
 
     /**
