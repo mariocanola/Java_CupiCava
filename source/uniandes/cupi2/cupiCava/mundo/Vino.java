@@ -243,7 +243,7 @@ public class Vino
             return -1;
         } else {
             return 1;
-        }
+        } 
     }
     
 
@@ -256,6 +256,7 @@ public class Vino
      */
     public int compararPorPresentacion( Vino pVino )
     {
+    	
    	 // TODO Parte2 PuntoB: Implemente el método según la documentación dada.
    }
 
