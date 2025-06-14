@@ -302,6 +302,17 @@ public class Vino
      */
     public int compararPorContenidoAzucar( Vino pVino )
     {
+    	if (pVino == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino nulo.");
+        }
+
+        if (contenidoAzucar == pVino.darContenidoAzucar()) {
+            return 0;
+        } else if (contenidoAzucar < pVino.darContenidoAzucar()) {
+            return -1;
+        } else {
+            return 1;
+        }
    	 // TODO Parte2 PuntoD: Implemente el método según la documentación dada.
    }
 
