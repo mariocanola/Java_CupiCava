@@ -280,7 +280,17 @@ public class Vino
      */
     public int compararPorAnhoElaboracion( Vino pVino )
     {
-   	 // TODO Parte2 PuntoC: Implemente el método según la documentación dada.
+    	if (pVino == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino nulo.");
+        }
+
+        if (anhoElaboracion == pVino.darAnhoElaboracion()) {
+            return 0;
+        } else if (anhoElaboracion < pVino.darAnhoElaboracion()) {
+            return -1;
+        } else {
+            return 1;
+        }
    }
 
     /**
