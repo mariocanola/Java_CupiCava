@@ -481,5 +481,14 @@ public class Vino
                (color.equals(TINTO) || color.equals(ROSADO) || color.equals(BLANCO));
     }
     
+    /**
+     * Valida que el lugar de origen sea válido.
+     * @return true si el lugar de origen es válido, false en caso contrario.
+     */
+    private boolean validarLugarOrigen( )
+    {
+        return lugarOrigen != null && !lugarOrigen.equals("");
+    }
+    
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
