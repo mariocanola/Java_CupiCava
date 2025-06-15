@@ -412,7 +412,8 @@ public class Vino
      * lugarOrigen != null && lugarOrigen != "" <br>
      * imagen != null && imagen != ""
      */
-    private void verificarInvariante( )
+    @SuppressWarnings("unused")
+	private void verificarInvariante( )
     {
         assert validarNombre() : "El nombre no puede ser null o vacío";
         assert validarPresentacion() : "La presentación debe ser válida (Botella o Barril)";
@@ -498,5 +499,4 @@ public class Vino
     {
         return imagen != null && !imagen.equals("");
     }
-    // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
