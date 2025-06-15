@@ -231,8 +231,21 @@ public class Vino
      */
     public int compararPorNombre( Vino pVino )
     {
-    	 // TODO Parte2 PuntoA: Implemente el método según la documentación dada.
+    	if (pVino == null || pVino.darNombre() == null || nombre == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino.");
+        }
+
+        int resultado = nombre.compareTo(pVino.darNombre());
+
+        if (resultado == 0) {
+            return 0;
+        } else if (resultado < 0) {
+            return -1;
+        } else {
+            return 1;
+        } 
     }
+    
 
     /**
      * Compara dos vinos según la presentación. <br>
@@ -243,7 +256,19 @@ public class Vino
      */
     public int compararPorPresentacion( Vino pVino )
     {
-   	 // TODO Parte2 PuntoB: Implemente el método según la documentación dada.
+    	if (pVino == null || pVino.darPresentacion() == null || presentacion == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino.");
+        }
+
+        int resultado = presentacion.compareTo(pVino.darPresentacion());
+
+        if (resultado == 0) {
+            return 0;
+        } else if (resultado < 0) {
+            return -1;
+        } else {
+            return 1;
+        }
    }
 
     /**
@@ -255,7 +280,17 @@ public class Vino
      */
     public int compararPorAnhoElaboracion( Vino pVino )
     {
-   	 // TODO Parte2 PuntoC: Implemente el método según la documentación dada.
+    	if (pVino == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino nulo.");
+        }
+
+        if (anhoElaboracion == pVino.darAnhoElaboracion()) {
+            return 0;
+        } else if (anhoElaboracion < pVino.darAnhoElaboracion()) {
+            return -1;
+        } else {
+            return 1;
+        }
    }
 
     /**
@@ -267,7 +302,17 @@ public class Vino
      */
     public int compararPorContenidoAzucar( Vino pVino )
     {
-   	 // TODO Parte2 PuntoD: Implemente el método según la documentación dada.
+    	if (pVino == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino nulo.");
+        }
+
+        if (contenidoAzucar == pVino.darContenidoAzucar()) {
+            return 0;
+        } else if (contenidoAzucar < pVino.darContenidoAzucar()) {
+            return -1;
+        } else {
+            return 1;
+        }
    }
 
     /**
@@ -279,7 +324,19 @@ public class Vino
      */
     public int compararPorTipo( Vino pVino )
     {
-   	 // TODO Parte2 PuntoE: Implemente el método según la documentación dada.
+    	if (pVino == null || pVino.darTipo() == null || tipo == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino.");
+        }
+
+        int resultado = tipo.compareTo(pVino.darTipo());
+
+        if (resultado == 0) {
+            return 0;
+        } else if (resultado < 0) {
+            return -1;
+        } else {
+            return 1;
+        }
    }
 
     /**
@@ -291,7 +348,19 @@ public class Vino
      */
     public int compararPorColor( Vino pVino )
     {
-   	 // TODO Parte2 PuntoF: Implemente el método según la documentación dada.
+    	if (pVino == null || pVino.darColor() == null || color == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino.");
+        }
+
+        int resultado = color.compareTo(pVino.darColor());
+
+        if (resultado == 0) {
+            return 0;
+        } else if (resultado < 0) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
     /**
@@ -303,7 +372,19 @@ public class Vino
      */
     public int compararPorLugarOrigen( Vino pVino )
     {
-   	 // TODO Parte2 PuntoG: Implemente el método según la documentación dada.
+    	 if (pVino == null || pVino.darLugarOrigen() == null || lugarOrigen == null) {
+             throw new IllegalArgumentException("No se puede comparar con un vino.");
+         }
+
+         int resultado = lugarOrigen.compareTo(pVino.darLugarOrigen());
+
+         if (resultado == 0) {
+             return 0;
+         } else if (resultado < 0) {
+             return -1;
+         } else {
+             return 1;
+         }
    }
 
     /**
@@ -319,5 +400,103 @@ public class Vino
     // Invariante
     // -----------------------------------------------------------------
 
-    // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
+    /**
+     * Verifica la invariante de la clase.<br>
+     * <b>inv:</b><br>
+     * nombre != null && nombre != "" <br>
+     * presentacion != null && presentacion != "" && (presentacion.equals(BOTELLA) || presentacion.equals(BARRIL)) <br>
+     * anhoElaboracion > 0 <br>
+     * contenidoAzucar >= 0 <br>
+     * tipo != null && tipo != "" && (tipo.equals(SECO) || tipo.equals(ABOCADO) || tipo.equals(SEMI_SECO) || tipo.equals(SEMI_DULCE) || tipo.equals(DULCE)) <br>
+     * color != null && color != "" && (color.equals(TINTO) || color.equals(ROSADO) || color.equals(BLANCO)) <br>
+     * lugarOrigen != null && lugarOrigen != "" <br>
+     * imagen != null && imagen != ""
+     */
+    @SuppressWarnings("unused")
+	private void verificarInvariante( )
+    {
+        assert validarNombre() : "El nombre no puede ser null o vacío";
+        assert validarPresentacion() : "La presentación debe ser válida (Botella o Barril)";
+        assert validarAnhoElaboracion() : "El año de elaboración debe ser mayor a 0";
+        assert validarContenidoAzucar() : "El contenido de azúcar debe ser mayor o igual a 0";
+        assert validarTipo() : "El tipo debe ser válido (Seco, Abocado, Semi-seco, Semi-dulce o Dulce)";
+        assert validarColor() : "El color debe ser válido (Tinto, Rosado o Blanco)";
+        assert validarLugarOrigen() : "El lugar de origen no puede ser null o vacío";
+        assert validarImagen() : "La imagen no puede ser null o vacía";
+    }
+    
+    /**
+     * Valida que el nombre sea válido.
+     * @return true si el nombre es válido, false en caso contrario.
+     */
+    private boolean validarNombre() {
+    	return nombre != null && !nombre.equals("");
+    }
+    
+    /**
+     * Valida que la presentación sea válida.
+     * @return true si la presentación es válida, false en caso contrario.
+     */
+    private boolean validarPresentacion( )
+    {
+        return presentacion != null && !presentacion.equals("") && 
+               (presentacion.equals(BOTELLA) || presentacion.equals(BARRIL));
+    }
+    
+    /**
+     * Valida que el año de elaboración sea válido.
+     * @return true si el año de elaboración es válido, false en caso contrario.
+     */
+    private boolean validarAnhoElaboracion()
+    {
+    	return anhoElaboracion > 0;
+    }
+    
+    /**
+     * Valida que el contenido de azúcar sea válido.
+     * @return true si el contenido de azúcar es válido, false en caso contrario.
+     */
+    private boolean validarContenidoAzucar( )
+    {
+        return contenidoAzucar >= 0;
+    }
+
+    /**
+     * Valida que el tipo sea válido.
+     * @return true si el tipo es válido, false en caso contrario.
+     */
+    private boolean validarTipo( )
+    {
+        return tipo != null && !tipo.equals("") && 
+               (tipo.equals(SECO) || tipo.equals(ABOCADO) || tipo.equals(SEMI_SECO) || 
+                tipo.equals(SEMI_DULCE) || tipo.equals(DULCE));
+    }
+    
+    /**
+     * Valida que el color sea válido.
+     * @return true si el color es válido, false en caso contrario.
+     */
+    private boolean validarColor( )
+    {
+        return color != null && !color.equals("") && 
+               (color.equals(TINTO) || color.equals(ROSADO) || color.equals(BLANCO));
+    }
+    
+    /**
+     * Valida que el lugar de origen sea válido.
+     * @return true si el lugar de origen es válido, false en caso contrario.
+     */
+    private boolean validarLugarOrigen( )
+    {
+        return lugarOrigen != null && !lugarOrigen.equals("");
+    }
+    
+    /**
+     * Valida que la imagen sea válida.
+     * @return true si la imagen es válida, false en caso contrario.
+     */
+    private boolean validarImagen( )
+    {
+        return imagen != null && !imagen.equals("");
+    }
 }
