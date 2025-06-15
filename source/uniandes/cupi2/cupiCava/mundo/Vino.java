@@ -431,5 +431,15 @@ public class Vino
     private boolean validarNombre() {
     	return nombre != null && !nombre.equals("");
     }
+    
+    /**
+     * Valida que la presentación sea válida.
+     * @return true si la presentación es válida, false en caso contrario.
+     */
+    private boolean validarPresentacion( )
+    {
+        return presentacion != null && !presentacion.equals("") && 
+               (presentacion.equals(BOTELLA) || presentacion.equals(BARRIL));
+    }
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
