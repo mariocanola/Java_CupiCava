@@ -442,16 +442,34 @@ public class Vino
                (presentacion.equals(BOTELLA) || presentacion.equals(BARRIL));
     }
     
+    /**
+     * Valida que el año de elaboración sea válido.
+     * @return true si el año de elaboración es válido, false en caso contrario.
+     */
     private boolean validarAnhoElaboracion()
     {
     	return anhoElaboracion > 0;
     }
     
+    /**
+     * Valida que el contenido de azúcar sea válido.
+     * @return true si el contenido de azúcar es válido, false en caso contrario.
+     */
     private boolean validarContenidoAzucar( )
     {
         return contenidoAzucar >= 0;
     }
 
+    /**
+     * Valida que el tipo sea válido.
+     * @return true si el tipo es válido, false en caso contrario.
+     */
+    private boolean validarTipo( )
+    {
+        return tipo != null && !tipo.equals("") && 
+               (tipo.equals(SECO) || tipo.equals(ABOCADO) || tipo.equals(SEMI_SECO) || 
+                tipo.equals(SEMI_DULCE) || tipo.equals(DULCE));
+    }
     
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
