@@ -313,7 +313,6 @@ public class Vino
         } else {
             return 1;
         }
-   	 // TODO Parte2 PuntoD: Implemente el método según la documentación dada.
    }
 
     /**
@@ -338,7 +337,6 @@ public class Vino
         } else {
             return 1;
         }
-   	 // TODO Parte2 PuntoE: Implemente el método según la documentación dada.
    }
 
     /**
@@ -350,7 +348,19 @@ public class Vino
      */
     public int compararPorColor( Vino pVino )
     {
-   	 // TODO Parte2 PuntoF: Implemente el método según la documentación dada.
+    	if (pVino == null || pVino.darColor() == null || color == null) {
+            throw new IllegalArgumentException("No se puede comparar con un vino.");
+        }
+
+        int resultado = color.compareTo(pVino.darColor());
+
+        if (resultado == 0) {
+            return 0;
+        } else if (resultado < 0) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 
     /**
