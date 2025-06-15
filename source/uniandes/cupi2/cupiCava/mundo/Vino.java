@@ -471,5 +471,15 @@ public class Vino
                 tipo.equals(SEMI_DULCE) || tipo.equals(DULCE));
     }
     
+    /**
+     * Valida que el color sea válido.
+     * @return true si el color es válido, false en caso contrario.
+     */
+    private boolean validarColor( )
+    {
+        return color != null && !color.equals("") && 
+               (color.equals(TINTO) || color.equals(ROSADO) || color.equals(BLANCO));
+    }
+    
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
