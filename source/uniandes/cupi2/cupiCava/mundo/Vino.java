@@ -385,7 +385,6 @@ public class Vino
          } else {
              return 1;
          }
-   	 // TODO Parte2 PuntoG: Implemente el método según la documentación dada.
    }
 
     /**
@@ -401,5 +400,28 @@ public class Vino
     // Invariante
     // -----------------------------------------------------------------
 
+    /**
+     * Verifica la invariante de la clase.<br>
+     * <b>inv:</b><br>
+     * nombre != null && nombre != "" <br>
+     * presentacion != null && presentacion != "" && (presentacion.equals(BOTELLA) || presentacion.equals(BARRIL)) <br>
+     * anhoElaboracion > 0 <br>
+     * contenidoAzucar >= 0 <br>
+     * tipo != null && tipo != "" && (tipo.equals(SECO) || tipo.equals(ABOCADO) || tipo.equals(SEMI_SECO) || tipo.equals(SEMI_DULCE) || tipo.equals(DULCE)) <br>
+     * color != null && color != "" && (color.equals(TINTO) || color.equals(ROSADO) || color.equals(BLANCO)) <br>
+     * lugarOrigen != null && lugarOrigen != "" <br>
+     * imagen != null && imagen != ""
+     */
+    private void verificarInvariante( )
+    {
+        assert validarNombre() : "El nombre no puede ser null o vacío";
+        assert validarPresentacion() : "La presentación debe ser válida (Botella o Barril)";
+        assert validarAnhoElaboracion() : "El año de elaboración debe ser mayor a 0";
+        assert validarContenidoAzucar() : "El contenido de azúcar debe ser mayor o igual a 0";
+        assert validarTipo() : "El tipo debe ser válido (Seco, Abocado, Semi-seco, Semi-dulce o Dulce)";
+        assert validarColor() : "El color debe ser válido (Tinto, Rosado o Blanco)";
+        assert validarLugarOrigen() : "El lugar de origen no puede ser null o vacío";
+        assert validarImagen() : "La imagen no puede ser null o vacía";
+    }
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
