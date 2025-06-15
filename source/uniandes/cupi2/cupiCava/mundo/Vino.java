@@ -441,5 +441,10 @@ public class Vino
         return presentacion != null && !presentacion.equals("") && 
                (presentacion.equals(BOTELLA) || presentacion.equals(BARRIL));
     }
+    
+    private boolean validarAnhoElaboracion()
+    {
+    	return anhoElaboracion > 0;
+    }
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
