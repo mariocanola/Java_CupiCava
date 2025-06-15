@@ -372,6 +372,19 @@ public class Vino
      */
     public int compararPorLugarOrigen( Vino pVino )
     {
+    	 if (pVino == null || pVino.darLugarOrigen() == null || lugarOrigen == null) {
+             throw new IllegalArgumentException("No se puede comparar con un vino.");
+         }
+
+         int resultado = lugarOrigen.compareTo(pVino.darLugarOrigen());
+
+         if (resultado == 0) {
+             return 0;
+         } else if (resultado < 0) {
+             return -1;
+         } else {
+             return 1;
+         }
    	 // TODO Parte2 PuntoG: Implemente el método según la documentación dada.
    }
 
