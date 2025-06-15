@@ -490,5 +490,13 @@ public class Vino
         return lugarOrigen != null && !lugarOrigen.equals("");
     }
     
+    /**
+     * Valida que la imagen sea válida.
+     * @return true si la imagen es válida, false en caso contrario.
+     */
+    private boolean validarImagen( )
+    {
+        return imagen != null && !imagen.equals("");
+    }
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
