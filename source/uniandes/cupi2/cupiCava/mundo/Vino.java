@@ -423,5 +423,13 @@ public class Vino
         assert validarLugarOrigen() : "El lugar de origen no puede ser null o vacío";
         assert validarImagen() : "La imagen no puede ser null o vacía";
     }
+    
+    /**
+     * Valida que el nombre sea válido.
+     * @return true si el nombre es válido, false en caso contrario.
+     */
+    private boolean validarNombre() {
+    	return nombre != null && !nombre.equals("");
+    }
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
