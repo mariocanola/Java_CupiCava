@@ -446,5 +446,12 @@ public class Vino
     {
     	return anhoElaboracion > 0;
     }
+    
+    private boolean validarContenidoAzucar( )
+    {
+        return contenidoAzucar >= 0;
+    }
+
+    
     // TODO Parte1 PuntoB: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
 }
