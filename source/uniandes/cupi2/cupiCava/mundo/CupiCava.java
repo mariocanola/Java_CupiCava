@@ -174,6 +174,16 @@ public class CupiCava
         return vinosDelTipo;
     }
     
+    /**
+     * Verifica si existen vinos con nombres repetidos en la cava.
+     * <p>
+     * Recorre la lista de vinos y compara cada vino con los demás para detectar si hay
+     * algún nombre que se repita. La comparación se hace usando {@code equals} sobre el
+     * nombre de los vinos.
+     * </p>
+     *
+     * @return {@code true} si hay al menos dos vinos con el mismo nombre; {@code false} en caso contrario.
+     */
     public boolean buscarVinosConNombreRepetido() {
         for (int i = 0; i <vinos.size(); i++) {
             for (int j = i + 1; j < vinos.size(); j++) {
@@ -364,9 +374,49 @@ public class CupiCava
     // -----------------------------------------------------------------
     // Invariante
     // -----------------------------------------------------------------
+    
+    /**
+     * Verifica que se cumplan las invariantes de la clase CupiCava. <br>
+     * <b>inv:</b> <br>
+     * vinos != null <br>
+     * No existen dos vinos con el mismo nombre <br>
+     * Todos los vinos de la lista tienen nombre válido (diferente de null y no vacío)
+     */
+    @SuppressWarnings("unused")
+	private void verificarInvariante() {
+        assert vinos != null : "La lista de vinos no puede ser null";
+        assert validarNombresUnicos() : "No pueden existir dos vinos con el mismo nombre";
+        assert validarNombresValidos() : "Todos los vinos deben tener nombres válidos";
+    }
 
-    // TODO Parte1 PuntoD: Documente e implemente el método verificarInvariante. Si lo desea puede crear métodos privados en esta parte.
+    /**
+     * Valida que no existan dos vinos con el mismo nombre.
+     * @return true si todos los nombres son únicos, false de lo contrario.
+     */
+    private boolean validarNombresUnicos() {
+        for (int i = 0; i < vinos.size(); i++) {
+            for (int j = i + 1; j < vinos.size(); j++) {
+                if (vinos.get(i).darNombre().equalsIgnoreCase(vinos.get(j).darNombre())) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
+    /**
+     * Valida que todos los vinos tengan nombres válidos.
+     * @return true si todos los nombres son válidos, false de lo contrario.
+     */
+    private boolean validarNombresValidos() {
+        for (Vino vino : vinos) {
+            if (vino.darNombre() == null || vino.darNombre().isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     // -----------------------------------------------------------------
     // Puntos de Extensión
     // -----------------------------------------------------------------
