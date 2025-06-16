@@ -74,7 +74,6 @@ public class CupiCava
                 encontre = true;
             }
         }
-
         return buscado;
     }
 
@@ -86,7 +85,24 @@ public class CupiCava
      */
     public Vino buscarBinarioPorNombre( String pNombre )
     {
-   	 // TODO Parte2 PuntoH: Implemente el método según la documentación dada.
+    	int inicio = 0;
+        int fin = vinos.size() - 1;
+        Vino encontrado = null;
+        
+        while (inicio <= fin && encontrado == null) {
+            int medio = (inicio + fin) / 2;
+            Vino vinoMedio = vinos.get(medio);
+            int comparacion = vinoMedio.darNombre().compareToIgnoreCase(pNombre);
+            
+            if (comparacion == 0) {
+                encontrado = vinoMedio;
+            } else if (comparacion < 0) {
+                inicio = medio + 1;
+            } else {
+                fin = medio - 1;
+            }
+        }
+        return encontrado;
     }
 
     /**
@@ -97,7 +113,20 @@ public class CupiCava
      */
     public Vino buscarVinoMasDulce( )
     {
-   	 // TODO Parte2 PuntoI: Implemente el método según la documentación dada.
+    	if (vinos.isEmpty()) {
+            return null;
+        }
+        
+        Vino masDulce = vinos.get(0);
+        
+        for (int i = 1; i < vinos.size(); i++) {
+            Vino vinoActual = vinos.get(i);
+            if (vinoActual.darContenidoAzucar() > masDulce.darContenidoAzucar()) {
+                masDulce = vinoActual;
+            }
+        }
+        
+        return masDulce;
     }
 
     /**
@@ -108,8 +137,21 @@ public class CupiCava
      */
     public Vino buscarVinoMasSeco( )
     {
-   	 // TODO Parte2 PuntoJ: Implemente el método según la documentación dada.
-   }
+    	if (vinos.isEmpty()) {
+            return null;
+        }
+        
+        Vino masSeco = vinos.get(0);
+        
+        for (int i = 1; i < vinos.size(); i++) {
+            Vino vinoActual = vinos.get(i);
+            if (vinoActual.darContenidoAzucar() < masSeco.darContenidoAzucar()) {
+                masSeco = vinoActual;
+            }
+        }
+        
+        return masSeco;
+    }
 
     /**
      * Busca los vinos del tipo dado por parámetro. <br>
@@ -120,8 +162,28 @@ public class CupiCava
      */
     public ArrayList<Vino> buscarVinosDeTipo( String pTipo )
     {
-   	 // TODO Parte2 PuntoK: Implemente el método según la documentación dada.
-   }
+    	ArrayList<Vino> vinosDelTipo = new ArrayList<Vino>();
+        
+        for (int i = 0; i < vinos.size(); i++) {
+            Vino vinoActual = vinos.get(i);
+            if (vinoActual.darTipo().equals(pTipo)) {
+                vinosDelTipo.add(vinoActual);
+            }
+        }
+        
+        return vinosDelTipo;
+    }
+    
+    public boolean buscarVinosConNombreRepetido() {
+        for (int i = 0; i <vinos.size(); i++) {
+            for (int j = i + 1; j < vinos.size(); j++) {
+                if (vinos.get(i).darNombre().equals(vinos.get(j).darNombre())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
     /**
      * Agrega un nuevo vino a la cava si no existe actualmente un vino en la cava con el mismo nombre.<br>
