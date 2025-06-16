@@ -60,6 +60,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     /**
      * Lista de los vinos.
      */
+    private JList<String> listaVinos;
     // TODO Parte3 PuntoA: Declare el atributo listaVinos de tipo JList.
 
     /**
@@ -88,10 +89,15 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
         setBorder( new CompoundBorder( new EmptyBorder( 0, 5, 0, 5 ), new TitledBorder( "Lista de vinos" ) ) );
         setPreferredSize( new Dimension( 250, 0 ) );
 
+        listaVinos = new JList<String>();
+        listaVinos.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listaVinos.addListSelectionListener(this);
+
         // TODO Parte3 PuntoB: Inicializar la lista de vinos y agregarle un ListSelectionListener
         
 
      // TODO Parte3 PuntoC: Inicializar el scroll.
+        scroll = new JScrollPane(listaVinos);
         scroll.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         scroll.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
         scroll.setBorder( new CompoundBorder( new EmptyBorder( 3, 3, 3, 3 ), new LineBorder( Color.BLACK, 1 ) ) );
@@ -114,7 +120,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      */
     public void refrescarLista( ArrayList pListaVinos )
     {
-        listaVinos.setListData( pListaVinos.toArray( ) );
+    	listaVinos.setListData( (String[]) pListaVinos.toArray(new String[0]) );
         if( !pListaVinos.isEmpty( ) )
         {
             listaVinos.setSelectedIndex( 0 );
@@ -128,7 +134,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     public void seleccionar( String pNombreVino )
     {
         int indice = -1;
-        ListModel model = listaVinos.getModel( );
+        ListModel<String> model = listaVinos.getModel( );
         for( int i = 0; i < model.getSize( ); i++ )
         {
             String vinoActual = ( String )model.getElementAt( i );
@@ -148,7 +154,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      */
     public void valueChanged( ListSelectionEvent pEvento )
     {
-        if( listaVinos.getSelectedValue( ) != null )
+        if( !pEvento.getValueIsAdjusting() && listaVinos.getSelectedValue( ) != null )
         {
             String nombreVino = ( String )listaVinos.getSelectedValue( );
             principal.actualizarInfoVino( nombreVino );
@@ -167,6 +173,23 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
             DialogoAgregarVino dialogoAgregar = new DialogoAgregarVino( principal );
             dialogoAgregar.setVisible( true );
         }
+    }
+    
+    /**
+     * Retorna el vino actualmente seleccionado en la lista.
+     * @return El nombre del vino seleccionado, null si no hay selección.
+     */
+    public String getVinoSeleccionado()
+    {
+        return listaVinos.getSelectedValue();
+    }
+
+    /**
+     * Limpia la selección de la lista.
+     */
+    public void limpiarSeleccion()
+    {
+        listaVinos.clearSelection();
     }
 
 }
