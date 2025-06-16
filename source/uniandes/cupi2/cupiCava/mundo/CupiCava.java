@@ -222,8 +222,18 @@ public class CupiCava
      */
     public void ordenarVinosPorNombre( )
     {
-   	 // TODO Parte2 PuntoL: Implemente el método según la documentación dada.
-   }
+    	for (int i = 0; i < vinos.size() - 1; i++) {
+            for (int j = 0; j < vinos.size() - 1 - i; j++) {
+                Vino vino1 = vinos.get(j);
+                Vino vino2 = vinos.get(j + 1);
+                
+                if (vino1.darNombre().compareToIgnoreCase(vino2.darNombre()) > 0) {
+                    vinos.set(j, vino2);
+                    vinos.set(j + 1, vino1);
+                }
+            }
+        }
+    }
 
     /**
      * Ordena descendentemente la lista de vinos por año de elaboración usando el algoritmo de selección. <br>
@@ -232,8 +242,22 @@ public class CupiCava
      */
     public void ordenarVinosPorAnhoElaboracion( )
     {
-   	 // TODO Parte2 PuntoM: Implemente el método según la documentación dada.
-   }
+    	for (int i = 0; i < vinos.size() - 1; i++) {
+            int indiceMayor = i;
+            
+            for (int j = i + 1; j < vinos.size(); j++) {
+                if (vinos.get(j).darAnhoElaboracion() > vinos.get(indiceMayor).darAnhoElaboracion()) {
+                    indiceMayor = j;
+                }
+            }
+            
+            if (indiceMayor != i) {
+                Vino temp = vinos.get(i);
+                vinos.set(i, vinos.get(indiceMayor));
+                vinos.set(indiceMayor, temp);
+            }
+        }
+    }
 
     /**
      * Ordena ascendentemente la lista de vinos por lugar de origen usando el algoritmo de inserción. <br>
@@ -242,9 +266,101 @@ public class CupiCava
      */
     public void ordenarVinosPorLugarOrigen( )
     {
-   	 // TODO Parte2 PuntoN: Implemente el método según la documentación dada.
-   }
+    	for (int i = 1; i < vinos.size(); i++) {
+            Vino vinoActual = vinos.get(i);
+            int j = i - 1;
+            
+            while (j >= 0 && vinos.get(j).darLugarOrigen().compareToIgnoreCase(vinoActual.darLugarOrigen()) > 0) {
+                vinos.set(j + 1, vinos.get(j));
+                j--;
+            }
+            
+            vinos.set(j + 1, vinoActual);
+        }
+    }
+    
+    /**
+     * Ordena ascendentemente la lista de vinos por presentación usando el algoritmo de burbuja.
+     * La comparación se realiza de forma sensible a mayúsculas y minúsculas.
+     * <br>
+     * <b>pre:</b> La lista de vinos está inicializada.<br>
+     * <b>post:</b> La lista de vinos está ordenada por presentación (orden ascendente).
+     */
+    public void ordenarVinosPorPresentacion() {
+        for (int i = 0; i < vinos.size() - 1; i++) {
+            for (int j = 0; j < vinos.size() - 1 - i; j++) {
+                if (vinos.get(j).darPresentacion().compareTo(vinos.get(j + 1).darPresentacion()) > 0) {
+                    Vino temp = vinos.get(j);
+                    vinos.set(j, vinos.get(j + 1));
+                    vinos.set(j + 1, temp);
+                }
+            }
+        }
+    }
 
+    /**
+     * Ordena ascendentemente la lista de vinos por color usando el algoritmo de burbuja.
+     * La comparación se realiza de forma sensible a mayúsculas y minúsculas.
+     * <br>
+     * <b>pre:</b> La lista de vinos está inicializada.<br>
+     * <b>post:</b> La lista de vinos está ordenada por color (orden ascendente).
+     */
+    public void ordenarVinosPorColor() {
+        for (int i = 0; i < vinos.size() - 1; i++) {
+            for (int j = 0; j < vinos.size() - 1 - i; j++) {
+                if (vinos.get(j).darColor().compareTo(vinos.get(j + 1).darColor()) > 0) {
+                    Vino temp = vinos.get(j);
+                    vinos.set(j, vinos.get(j + 1));
+                    vinos.set(j + 1, temp);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Ordena ascendentemente la lista de vinos por contenido de azúcar usando el algoritmo de burbuja.
+     * Los vinos con menor contenido de azúcar aparecerán primero en la lista.
+     * <br>
+     * <b>pre:</b> La lista de vinos está inicializada.<br>
+     * <b>post:</b> La lista de vinos está ordenada por contenido de azúcar (orden ascendente).
+     */
+    public void ordenarVinosPorContenidoAzucar() {
+        for (int i = 0; i < vinos.size() - 1; i++) {
+            for (int j = 0; j < vinos.size() - 1 - i; j++) {
+                if (vinos.get(j).darContenidoAzucar() > vinos.get(j + 1).darContenidoAzucar()) {
+                    Vino temp = vinos.get(j);
+                    vinos.set(j, vinos.get(j + 1));
+                    vinos.set(j + 1, temp);
+                }
+            }
+        }
+    }
+    
+    /**
+     * Ordena ascendentemente la lista de vinos por tipo usando el algoritmo de selección.
+     * La comparación se realiza ignorando diferencias entre mayúsculas y minúsculas.
+     * <br>
+     * <b>pre:</b> La lista de vinos está inicializada.<br>
+     * <b>post:</b> La lista de vinos está ordenada por tipo (orden ascendente, insensible a mayúsculas).
+     */
+    public void ordenarPorTipo() {
+        for (int i = 0; i < vinos.size() - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < vinos.size(); j++) {
+                String tipoActual = vinos.get(j).darTipo();
+                String tipoMinimo = vinos.get(minIndex).darTipo();
+                if (tipoActual.compareToIgnoreCase(tipoMinimo) < 0) {
+                    minIndex = j;
+                }
+            }
+            
+            Vino temp = vinos.get(i);
+            vinos.set(i, vinos.get(minIndex));
+            vinos.set(minIndex, temp);
+        }
+    }
+    
+    
     // -----------------------------------------------------------------
     // Invariante
     // -----------------------------------------------------------------
